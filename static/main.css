@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+.wrap {
+    width: 900px;
+    margin: auto;
+}
+
+.write_btn {
+    width: 300px;
+    display: block;
+    margin: 40px auto 40px auto;
+    font-size: 18px;
+
+}
+
+.search {
+    position: relative;
+    width: 900px;
+    margin: auto;
+}
+
+.search-input {
+    width: 100%;
+    border: 2px solid #bbb;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 18px;
+}
+
+.search-img {
+    position: absolute;
+    width: 18px;
+    top: 16px;
+    right: 12px;
+}
+
+.card-box {
+    margin-top: 20px;
+}

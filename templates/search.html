@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!--stylesheet-->
+    <link rel="stylesheet" href="/static/main.css" type="text/css">
+
+    <!--google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@200&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Nanum Myeongjo', serif;
+        }
+        .search-text {
+            color: blue;
+            margin: 20px 20px 0 20px;
+            font-size: 18px;
+        }
+        .text-underline {
+            text-decoration: underline;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            // listing();
+        });
+
+        function write() {
+            console.log("일기작성하러가기 버튼 누름");
+
+        }
+
+        function search() {
+            console.log("검색 버튼 누름");
+
+        }
+
+        function click_card() {
+            console.log("카드 누름");
+        }
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/diaries",
+                data: {},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        let diaries = response['orders'];
+                        for (let i = 0; i < diaries.length; i++) {
+                            let title = diaries[i]['name'];
+                            let date = diaries[i]['address'];
+                            let img_url = diaries[i]['img_url'];
+
+                            let temp_html = `<div class="card" onclick="click_card()">
+                                                <img class="card-img-top"
+                                                     src=img_url
+                                                     alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">title</h5>
+                                                    <p class="card-text"><small class="text-muted">date</small></p>
+                                                </div>
+                                            </div>`
+                            $('#diaries-box').append(temp_html)
+                        }
+                    }
+                }
+            })
+        }
+    </script>
+
+    <title>음악 일기</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">음악일기</h1>
+                <hr>
+                <p class="lead">음악일기는 오늘 하루와 비슷한 음악, 추천하고 싶은 음악 등 음악을 중심으로하여 하루를 기록하는 공간입니다.</p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary, write_btn">일기 작성하러 가기</button>
+        <div class="search">
+            <input type="text" class="search-input" placeholder="검색어 입력">
+            <img class="search-img" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+        </div>
+        <div class="search-text">
+            <span class="text-underline">"검색어"</span> 검색 내역 입니다.
+        </div>
+        <div class="card-columns card-box">
+            <div class="card">
+                <img class="card-img-top"
+                     src="https://cdnimg.melon.co.kr/cm2/album/images/106/00/854/10600854_20210430113134_500.jpg?4c03c0d724197f49e1f50b922beb9ebe/melon/resize/282/quality/80/optimize"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card" onclick="click_card()">
+                <img class="card-img-top"
+                     src="https://cdnimg.melon.co.kr/cm2/album/images/106/00/854/10600854_20210430113134_500.jpg?4c03c0d724197f49e1f50b922beb9ebe/melon/resize/282/quality/80/optimize"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card" onclick="click_card()">
+                <img class="card-img-top"
+                     src="https://cdnimg.melon.co.kr/cm2/album/images/106/00/854/10600854_20210430113134_500.jpg?4c03c0d724197f49e1f50b922beb9ebe/melon/resize/282/quality/80/optimize"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card" onclick="click_card()">
+                <img class="card-img-top"
+                     src="https://cdnimg.melon.co.kr/cm2/album/images/106/00/854/10600854_20210430113134_500.jpg?4c03c0d724197f49e1f50b922beb9ebe/melon/resize/282/quality/80/optimize"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card" onclick="click_card()">
+                <img class="card-img-top"
+                     src="https://cdnimg.melon.co.kr/cm2/album/images/106/00/854/10600854_20210430113134_500.jpg?4c03c0d724197f49e1f50b922beb9ebe/melon/resize/282/quality/80/optimize"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card" onclick="click_card()">
+                <img class="card-img-top"
+                     src="https://cdnimg.melon.co.kr/cm2/album/images/106/00/854/10600854_20210430113134_500.jpg?4c03c0d724197f49e1f50b922beb9ebe/melon/resize/282/quality/80/optimize"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card" onclick="click_card()">
+                <img class="card-img-top"
+                     src="https://cdnimg.melon.co.kr/cm2/album/images/106/00/854/10600854_20210430113134_500.jpg?4c03c0d724197f49e1f50b922beb9ebe/melon/resize/282/quality/80/optimize"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
