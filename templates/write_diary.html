@@ -20,8 +20,17 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
+    <!--google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@200&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
     <title>음악일기 | 일기 작성 페이지</title>
     <style>
+        * {
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
         .title {
             width: 800px;
             margin: 30px auto 30px;
@@ -44,6 +53,35 @@
 
 
     </style>
+
+    <script>
+        function submit() {
+
+            let title = $('#title-box').val();
+            let writer = $('#writer-box').val();
+            let weather = $('#weather-box').val();
+            let url = $('#url-box').val();
+            let content = $('#content-box').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/diaries",
+                data: {
+                    title_give: title,
+                    writer_give: writer,
+                    weather_give: weather,
+                    url_give: url,
+                    content_give: content
+                },
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert(response["msg"]);
+                        window.location.replace("index.html");
+                    }
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -52,8 +90,7 @@
         <h1>일기 작성</h1>
     </div>
     <div>
-        <form action="diary.html" method="get" id="btform" target="_blank"></form>
-        <button form="btform" type="submit" class="btn btn-primary btn-lg">제출 ></button>
+        <button type="submit" class="btn btn-primary btn-lg" onclick="submit()">제출 ></button>
     </div>
 </div>
 
@@ -61,35 +98,35 @@
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">제목</span>
+            <span class="input-group-text">제목</span>
         </div>
-        <input type="text" name="제목" placeholder="제목을 입력해주세요" class="form-control" id="basic-url"
+        <input type="text" name="제목" placeholder="제목을 입력해주세요" class="form-control" id="title-box"
                aria-describedby="basic-addon3">
     </div>
 
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">작성자</span>
+            <span class="input-group-text">작성자</span>
         </div>
-        <input type="text" placeholder="작성자를 입력해주세요" class="form-control" id="basic-url"
+        <input type="text" placeholder="작성자를 입력해주세요" class="form-control" id="writer-box"
                aria-describedby="basic-addon3">
     </div>
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">날씨</span>
+            <span class="input-group-text">날씨</span>
         </div>
-        <input type="text" placeholder="API를 통해 자동생성 예정" class="form-control" id="basic-url"
+        <input type="text" placeholder="API를 통해 자동생성 예정" class="form-control" id="weather-box"
                aria-describedby="basic-addon3">
     </div>
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">음악정보 URL</span>
+            <span class="input-group-text">음악정보 URL</span>
         </div>
         <input type="text" class="form-control" placeholder="음악정보 URL을 입력해주세요" aria-label="Recipient's username"
-               aria-describedby="basic-addon2">
+               aria-describedby="basic-addon2" id="url-box">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">검색</button>
         </div>
@@ -99,7 +136,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text">내용</span>
         </div>
-        <textarea class="form-control" rows="8" placeholder="내용을 입력해주세요" aria-label="With textarea"></textarea>
+        <textarea class="form-control" rows="8" placeholder="내용을 입력해주세요" aria-label="With textarea" id="content-box"></textarea>
     </div>
 </div>
 
