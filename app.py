@@ -33,9 +33,7 @@ def listing():
 @app.route('/search', methods=['GET'])
 def searchlisting():
     query_receive = request.args.get('query')
-    print(query_receive)
     lists = list(db.post.find({'title': {'$regex': query_receive}}, {'_id': False}))
-    print(lists)
 
     return render_template('search.html', text=query_receive, search_posts=lists)
 
