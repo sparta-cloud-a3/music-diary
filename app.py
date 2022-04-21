@@ -1,22 +1,14 @@
 from flask import Flask, render_template, jsonify, request
 from pymongo import MongoClient
 from bs4 import BeautifulSoup
-<<<<<<< HEAD
-from datetime import datetime, timedelta
-=======
-import datetime
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
 import requests
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
 client = MongoClient('localhost', 27017)
 db = client.music_diary
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -26,18 +18,11 @@ def home():
 def write():
     return render_template('write_diary.html')
 
-<<<<<<< HEAD
-@app.route('/diary')
-def diary():
-    return render_template('diary.html')
-
-=======
 @app.route('/diary/<int:id>')
 def diary(id):
     diary_give = db.post.find_one({'post_id': id}, {'_id': False})
-    print(diary_give)
     return render_template('diary.html', diary=diary_give)
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
+
 
 @app.route('/diaries', methods=['GET'])
 def listing():
@@ -47,11 +32,9 @@ def listing():
 
 
 @app.route('/search', methods=['GET'])
-<<<<<<< HEAD
-def searchlisting():
-=======
+
 def search_listing():
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
+
     query_receive = request.args.get('query')
     lists = list(db.post.find({'title': {'$regex': query_receive}}, {'_id': False}))
 
@@ -60,26 +43,21 @@ def search_listing():
 
 @app.route('/diaries', methods=['POST'])
 def saving():
-<<<<<<< HEAD
-=======
+
     print('save')
     if 0 >= db.post.estimated_document_count():
         post_id = 0
     else:
         post_id = list(db.post.find({},{'_id': False}))[-1]['post_id'] + 1
         print(post_id)
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
+
     title = request.form['title_give']
     writer = request.form['writer_give']
     content = request.form['content_give']
     url = request.form['url_give']
-<<<<<<< HEAD
     now = datetime.now()
     date = now.strftime('%Y년%m월%d일')
-=======
-    weather = request.form['weather_give']
-    date = datetime.date.strftime(datetime.date.today(), "%Y년%m월%d일")
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
+
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
@@ -90,36 +68,28 @@ def saving():
     album_art = soup.select_one('meta[property="og:image"]')['content']
     music_title = soup.select_one('meta[property="og:title"]')['content']
 
-<<<<<<< HEAD
     #api 호출 후 날씨 저장하는 부분
     dict = callapi()
     weather = dict['weather']
     degree = dict['degree']
 
     doc = {
-=======
-    doc = {
         'post_id': post_id,
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
         'title': title,
         'writer': writer,
         'album_art': album_art,
         'music_title': music_title,
         'content': content,
         'date': date,
-<<<<<<< HEAD
         'weather': weather,
         'degree': degree
-=======
-        'weather': weather
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
+
     }
 
     db.post.insert_one(doc)
 
     return jsonify({'msg': '일기 작성 완료!'})
 
-<<<<<<< HEAD
 
 def callapi():
     now = datetime.now()
@@ -186,7 +156,6 @@ def callapi():
 #     #return jsonify({'all_lists':lists, 'msg':'list 불러왔지롱'})
 
 
-=======
->>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
