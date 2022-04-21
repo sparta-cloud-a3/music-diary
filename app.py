@@ -14,6 +14,7 @@ db = client.music_diary
 def home():
     return render_template('index.html')
 
+
 @app.route('/write')
 def write():
     return render_template('write_diary.html')
@@ -33,10 +34,7 @@ def searchlisting():
     lists = list(db.post.find({'title': {'$regex': query_receive}}, {'_id': False}))
     print(lists)
 
-    return render_template('search.html', query=query_receive, orders=lists)
-
-
-# return jsonify({'all_lists':lists , 'msg':query_receive})
+    return jsonify({'text_receive': query_receive, 'list_receive': lists})
 
 @app.route('/diaries', methods=['POST'])
 def saving():

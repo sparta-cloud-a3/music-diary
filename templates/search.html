@@ -44,7 +44,7 @@
 
     <script>
         $(document).ready(function () {
-            listing();
+            // listing();
         });
 
         function write() {
@@ -113,17 +113,17 @@
             <span class="text-underline">"{{query}}"</span> 검색 내역 입니다.
         </div>
         <div class="card-columns card-box">
-            {% for order in orders %}
-            <div class="card" onclick="click_card()">
-                <img class="card-img-top"
-                     src= {{order["img-url"]}}
-                     alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{order["name"]}}</h5>
-                    <p class="card-text"><small class="text-muted">{{order["address"]}}</small></p>
-                </div>
-            </div>
-            {% endfor %}
+<!--            {% for order in orders %}-->
+<!--            <div class="card" onclick="click_card()">-->
+<!--                <img class="card-img-top"-->
+<!--                     src= {{order["img-url"]}}-->
+<!--                     alt="Card image cap">-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title">{{order["name"]}}</h5>-->
+<!--                    <p class="card-text"><small class="text-muted">{{order["address"]}}</small></p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {% endfor %}-->
         </div>
     </div>
 </body>
