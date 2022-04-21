@@ -37,21 +37,52 @@
             margin: auto;
         }
     </style>
+    <script>
+        $(document).ready(function () {
+            diary();
+        });
+
+        function diary(){
+            $.ajax({
+                type: "GET",
+                url: "/diary",
+                data: {},
+                success: function (response) {
+
+                        let diaries = response['all_diaries']
+
+                        for (let i=0; i<diaries.length; i++){
+                            let title = diaries[i]['title']
+                            let writer = diaries[i]['writer']
+                            let music_title = diaries[i]['music_title']
+                            let content = diaries[i]['content']
+                            let art = diaries[i]['album_art']
+
+                            let temp_html =`<div>
+                                                <h1 class="title">${title}<span style="font-size: 20px"> 작성자 : ${writer} </span></h1>
+                                                <hr width="80%">
+                                                <div class="music">
+                                                    <img src="${art}"
+                                                         alt="Not Image">
+                                                    <p>${music_title}
+                                                </div>
+                                                <div class="input-group">
+                                                    <textarea class="form-control" rows="8" placeholder="내용을 입력해주세요" aria-label="With textarea">${content}</textarea>
+                                                </div>
+                                            </div>`
+                            $('#diary-box').append(temp_html)
+                        }
+                }
+            });
+        }
+
+    </script>
 </head>
 
 <body>
-<h1 class="title">일기 제목<span style="font-size: 20px"> 작성자 : 김이름 </span></h1>
-<hr width="80%">
+    <div id="diary-box">
 
-<div class="music">
-    <img src="https://musicmeta-phinf.pstatic.net/album/007/267/7267342.jpg?type=r480Fll&v=20220222175914"
-         alt="Not Image">
-    <p>부럽지가 않어 - 장기하
-</div>
-
-<div class="input-group">
-    <textarea class="form-control" rows="8" placeholder="내용을 입력해주세요" aria-label="With textarea"></textarea>
-</div>
+    </div>
 </body>
 
 </html>
