@@ -1,8 +1,11 @@
 @charset "utf-8";
 
+<<<<<<< HEAD
 . *{
     font-family: 'Jua', sans-serif
 }
+=======
+>>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
 .wrap {
     width: 900px;
     margin: auto;
@@ -13,6 +16,7 @@
     display: block;
     margin: 40px auto 40px auto;
     font-size: 18px;
+<<<<<<< HEAD
 }
 .jumbotron {
     font-weight: bold;
@@ -47,6 +51,9 @@ video {
     top: 70%;
     left: 50%;
     transform: translate(-50%,-50%);
+=======
+
+>>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
 }
 
 .search {

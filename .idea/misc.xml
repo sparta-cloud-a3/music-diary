@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (새 폴더)" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (music-diary)" project-jdk-type="Python SDK" />
+>>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
 </project>

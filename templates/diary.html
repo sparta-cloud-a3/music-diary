@@ -36,11 +36,17 @@
             width: 800px;
             margin: auto;
         }
+<<<<<<< HEAD
         .mainbtn{
+=======
+
+        .mainbtn {
+>>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
             text-align: center;
             margin: 30px auto 30px auto;
 
         }
+<<<<<<< HEAD
         .weather{
             width: 800px;
             margin: auto;
@@ -117,6 +123,31 @@
     <form action="http://127.0.0.1:5001/" class="mainbtn">
         <button type="submit" class="btn btn-primary btn-lg">메인으로</button>
     </form>
+=======
+    </style>
+</head>
+
+<body>
+<div id="diary-box">
+
+</div>
+<form action="http://127.0.0.1:5001/" class="mainbtn">
+    <div>
+        <h1 class="title">{{diary["title"]}}<span style="font-size: 20px"> 작성자 : {{diary["writer"]}} </span></h1>
+        <hr width="80%">
+        <div class="music">
+            <img src={{diary["album_art"]}}
+                 alt="Not Image">
+            <p>{{diary["music_title"]}}
+        </div>
+        <div class="input-group">
+            <textarea class="form-control" rows="8" placeholder="내용을 입력해주세요"
+                      aria-label="With textarea">{{diary["content"]}}</textarea>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">메인으로</button>
+</form>
+>>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
 </body>
 
 </html>

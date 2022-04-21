@@ -54,6 +54,13 @@
                 $('#searchform').submit();
             }
         }
+<<<<<<< HEAD
+=======
+
+        function click_post(id) {
+
+        }
+>>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
     </script>
 
     <title>음악 일기</title>
@@ -62,9 +69,12 @@
 <body>
     <div class="wrap">
         <div class="jumbotron jumbotron-fluid">
+<<<<<<< HEAD
             <video height="500px" width="900px" autoplay="autoplay" muted="muted" loop="loop" preload="auto">
                 <source src="https://tistory4.daumcdn.net/tistory/4939852/skin/images/allLogo.mp4" type="video/mp4">
             </video>
+=======
+>>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
             <div class="container">
                 <h1 class="display-4" onclick="location.href='/'">음악일기</h1>
                 <hr>
@@ -84,7 +94,11 @@
         </div>
         <div class="card-columns card-box">
             {% for search_post in search_posts %}
+<<<<<<< HEAD
             <div class="card" onclick="click_card()">
+=======
+            <div class="card" onclick="location.href='/diary/{{search_post["post_id"]}}'">
+>>>>>>> b93d0242fbb6534ab88906127dd56ae2079dc360
                 <img class="card-img-top"
                      src={{search_post["album_art"]}}
                      alt="Card image cap">
