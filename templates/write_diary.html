@@ -74,21 +74,28 @@
             let url = $('#url-box').val();
             let content = $('#content-box').val();
 
+            if (url.includes('melon')){
+
                 $.ajax({
-                type: "POST",
-                url: "/diaries",
-                data: {
-                    title_give: title,
-                    writer_give: writer,
-                    weather_give: weather,
-                    url_give: url,
-                    content_give: content
-                },
-                success: function (response) {
+                    type: "POST",
+                    url: "/diaries",
+                    data: {
+                        title_give: title,
+                        writer_give: writer,
+                        weather_give: weather,
+                        url_give: url,
+                        content_give: content
+                    },
+                    success: function (response) {
                         alert(response["msg"]);
-                        location.href="diary"
-                }
-            });
+                        location.href = "diary"
+                    }
+                });
+
+            } else  {
+                alert('음악정보 URL이 올바르지 않습니다\n 멜론을 이용해주세요')
+            }
+
         }
     </script>
 </head>
