@@ -36,20 +36,25 @@
             width: 800px;
             margin: auto;
         }
+        .mainbtn{
+            text-align: center;
+            margin: 30px auto 30px auto;
+
+        }
     </style>
     <script>
         $(document).ready(function () {
-            diary();
+            all_diaries();
         });
 
-        function diary(){
+        function all_diaries(){
             $.ajax({
                 type: "GET",
-                url: "/diary",
+                url: "/diaries",
                 data: {},
                 success: function (response) {
 
-                        let diaries = response['all_diaries']
+                        let diaries = response['diaries']
 
                         for (let i=0; i<diaries.length; i++){
                             let title = diaries[i]['title']
@@ -83,6 +88,9 @@
     <div id="diary-box">
 
     </div>
+    <form action="http://127.0.0.1:5001/" class="mainbtn">
+        <button type="submit" class="btn btn-primary btn-lg">메인으로</button>
+    </form>
 </body>
 
 </html>
