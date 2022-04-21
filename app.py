@@ -72,18 +72,5 @@ def saving():
 
     return jsonify({'msg': '일기 작성 완료!'})
 
-
-# @app.route('/diaries/view', methods=['GET'])
-# def showReview():
-#     query_receive = request.args.get('query')
-#     list_one = list(db.list.find_one({'title':query_receive},{'_id':False}))
-#     return render_template('view.html', search_one=list_one)
-#     #return jsonify({'all_lists':lists, 'msg':'list 불러왔지롱'})
-
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
-
-# @app.route('/memo', methods=['GET'])
-# def listing():
-#     articles = list(db.articles.find({}, {'_id': False}))
-#     return jsonify({'all_articles':articles})

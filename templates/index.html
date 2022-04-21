@@ -44,6 +44,7 @@
 
         function search() {
             let search_text = $('#search-box').val();
+            alert("search함수")
             if (search_text == "") {
                 alert("검색어를 입력하세요");
             } else {
@@ -104,7 +105,7 @@
     </div>
     <button type="button" class="btn btn-secondary, write_btn" onclick="location.href='/write'">일기 작성하러 가기</button>
     <div class="search">
-        <form action="/search" method="GET">
+        <form action="/search" method="GET" name="searchform">
             <input type="text" class="search-input" id="search-box" name="query" placeholder="검색어 입력">
             <button type="submit" value="search"/>
         </form>
