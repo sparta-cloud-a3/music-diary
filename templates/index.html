@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:https="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!--stylesheet-->
+    <link rel="stylesheet" href="/static/css/main.css" type="text/css">
+
+    <!--google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@200&family=Nanum+Myeongjo&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        .card {
+            cursor: pointer;
+        }
+    </style>
+
+    <title>음악 일기</title>
+
+    <script src="{{ url_for('static', filename='js/main_script.js') }}">
+
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="jumbotron jumbotron-fluid">
+            <video height="500px" width="900px" autoplay="autoplay" muted="muted" loop="loop" preload="auto">
+                <source src="https://tistory4.daumcdn.net/tistory/4939852/skin/images/allLogo.mp4" type="video/mp4">
+            </video>
+
+            <div class="container">
+                <h1 class="display-4" onclick="location.href='/'">음악일기</h1>
+                <hr>
+                <p class="lead">음악일기는 오늘 하루와 비슷한 음악, 추천하고 싶은 음악 등 음악을 중심으로하여 하루를 기록하는 공간입니다.</p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary, write_btn" onclick="location.href='/write'">일기 작성하러 가기</button>
+        <div class="search">
+            <form action="/search" method="GET" id="searchform">
+                <input type="text" class="search-input" id="search-box" name="query" placeholder="검색어 입력">
+                <img class="search-img" onclick="search()"
+                     src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+            </form>
+        </div>
+        <div class="card-columns card-box" id="diaries-box">
+        </div>
+    </div>
+</body>
+
+</html>

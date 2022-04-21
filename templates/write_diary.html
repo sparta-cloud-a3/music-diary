@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!--google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@200&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+    <title>음악일기 | 일기 작성 페이지</title>
+    <style>
+        * {
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        .title {
+            width: 800px;
+            margin: 30px auto 30px;
+            text-align: right;
+
+        }
+
+        .head {
+            float: left;
+        }
+
+        .input-box {
+            width: 800px;
+            margin: auto;
+        }
+
+        textarea::placeholder {
+            line-height: 190px;
+        }
+
+
+    </style>
+
+    <script>
+
+        function search() {
+                window.open("about:blank").location.href = 'https://www.melon.com/index.htm'
+        }
+
+
+        function submit() {
+
+            let title = $('#title-box').val();
+            let writer = $('#writer-box').val();
+            let weather = $('#weather-box').val();
+            let url = $('#url-box').val();
+            let content = $('#content-box').val();
+
+            if (url.includes('melon')){
+
+                $.ajax({
+                    type: "POST",
+                    url: "/diaries",
+                    data: {
+                        title_give: title,
+                        writer_give: writer,
+                        weather_give: weather,
+                        url_give: url,
+                        content_give: content
+                    },
+                    success: function (response) {
+                        alert(response["msg"]);
+                        location.href = "diary"
+                    }
+                });
+
+            } else  {
+                alert('음악정보 URL이 올바르지 않습니다\n 멜론을 이용해주세요')
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+<div class="title">
+    <div class="head">
+        <h1>일기 작성</h1>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary btn-lg" onclick="submit()">제출 ></button>
+    </div>
+</div>
+
+<div class="input-box">
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">제목</span>
+        </div>
+        <input type="text" name="제목" placeholder="제목을 입력해주세요" class="form-control" id="title-box"
+               aria-describedby="basic-addon3">
+    </div>
+
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">작성자</span>
+        </div>
+        <input type="text" placeholder="작성자를 입력해주세요" class="form-control" id="writer-box"
+               aria-describedby="basic-addon3">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">날씨</span>
+        </div>
+        <input type="text" placeholder="API를 통해 자동생성 예정" class="form-control" id="weather-box"
+               aria-describedby="basic-addon3">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">음악정보 URL</span>
+        </div>
+        <input type="text" class="form-control" placeholder="음악정보 URL을 입력해주세요" aria-label="Recipient's username"
+               aria-describedby="basic-addon2" id="url-box">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" onclick="search()">검색</button>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">내용</span>
+        </div>
+        <textarea class="form-control" rows="8" placeholder="내용을 입력해주세요" aria-label="With textarea" id="content-box"></textarea>
+    </div>
+</div>
+
+</body>
+
+</html>

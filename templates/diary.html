@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>음악일기 | 일기 페이지</title>
+    <style>
+        .title {
+            width: 800px;
+            margin: auto;
+
+        }
+
+        .music {
+            text-align: center;
+        }
+
+        .input-group {
+            width: 800px;
+            margin: auto;
+        }
+        .mainbtn{
+            text-align: center;
+            margin: 30px auto 30px auto;
+
+        }
+        .weather{
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            all_diaries();
+        });
+
+        function all_diaries() {
+            $.ajax({
+                type: "GET",
+                url: "/diaries",
+                data: {},
+                success: function (response) {
+
+                    let diaries = response['diaries']
+
+                    for (let i = 0; i < diaries.length; i++) {
+                        let title = diaries[i]['title']
+                        let writer = diaries[i]['writer']
+                        let music_title = diaries[i]['music_title']
+                        let content = diaries[i]['content']
+                        let art = diaries[i]['album_art']
+                        let date = diaries[i]['date']
+                        let weather = diaries[i]['weather']
+                        let degree = diaries[i]['degree']
+                        let weather_url = ''
+                        if (weather=='맑음'){
+                            weather_url = '/static/image/sunny.JPG'
+                        }else if(weather=='구름많음'){
+                            weather_url = '/static/image/little_cloudy(day).JPG'
+                        }else if(weather=='흐림'){
+                            weather_url = '/static/image/cloudy.JPG'
+                        }else if(weather=='비'){
+                            weather_url = '/static/image/rainy.JPG'
+                        }else if(weather=='비/눈'){
+                            weather_url = '/static/image/snow_rain.JPG'
+                        }else{
+                            weather_url = '/static/image/snow.JPG'
+                        }
+
+
+
+                        let temp_html = `<div>
+                                            <h1 class="title">${title}<span style="font-size: 20px"> 작성자 : ${writer} </span></h1>
+                                            <div class="weather"><img src="${weather_url}" style="float:right">
+                                                <br style="text-align: right">작성날짜 : ${date} </br>날씨: ${weather} </br>온도: ${degree}</div></br>
+                                            <hr width="80%">
+                                            <div class="music">
+                                                <img src="${art}"
+                                                     alt="Not Image">
+                                                <p>${music_title}
+                                            </div>
+                                            <div class="input-group">
+                                                <textarea class="form-control" rows="8" placeholder="내용을 입력해주세요"
+                                                          aria-label="With textarea">${content}</textarea>
+                                            </div>
+                                        </div>`
+                        $('#diary-box').append(temp_html)
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="diary-box">
+
+    </div>
+    <form action="http://127.0.0.1:5001/" class="mainbtn">
+        <button type="submit" class="btn btn-primary btn-lg">메인으로</button>
+    </form>
+</body>
+
+</html>
