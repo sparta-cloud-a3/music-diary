@@ -54,6 +54,10 @@
                 $('#searchform').submit();
             }
         }
+
+        function click_post(id) {
+
+        }
     </script>
 
     <title>음악 일기</title>
@@ -81,7 +85,7 @@
         </div>
         <div class="card-columns card-box">
             {% for search_post in search_posts %}
-            <div class="card" onclick="click_card()">
+            <div class="card" onclick="location.href='/diary/{{search_post["post_id"]}}'">
                 <img class="card-img-top"
                      src={{search_post["album_art"]}}
                      alt="Card image cap">

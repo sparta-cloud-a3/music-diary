@@ -9,7 +9,6 @@ app = Flask(__name__)
 client = MongoClient('localhost', 27017)
 db = client.music_diary
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -19,9 +18,11 @@ def home():
 def write():
     return render_template('write_diary.html')
 
-@app.route('/diary')
-def diary():
-    return render_template('diary.html')
+@app.route('/diary/<int:id>')
+def diary(id):
+    diary_give = db.post.find_one({'post_id': id}, {'_id': False})
+    print(diary_give)
+    return render_template('diary.html', diary=diary_give)
 
 @app.route('/diaries', methods=['GET'])
 def listing():
@@ -40,6 +41,12 @@ def search_listing():
 
 @app.route('/diaries', methods=['POST'])
 def saving():
+    print('save')
+    if 0 >= db.post.estimated_document_count():
+        post_id = 0
+    else:
+        post_id = list(db.post.find({},{'_id': False}))[-1]['post_id'] + 1
+        print(post_id)
     title = request.form['title_give']
     writer = request.form['writer_give']
     content = request.form['content_give']
@@ -57,13 +64,14 @@ def saving():
     music_title = soup.select_one('meta[property="og:title"]')['content']
 
     doc = {
+        'post_id': post_id,
         'title': title,
         'writer': writer,
         'album_art': album_art,
         'music_title': music_title,
         'content': content,
         'date': date,
-        'weather' : weather
+        'weather': weather
     }
 
     db.post.insert_one(doc)

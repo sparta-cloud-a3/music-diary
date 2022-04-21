@@ -11,10 +11,6 @@ function search() {
     }
 }
 
-function click_card() {
-    location.href = "diary"
-}
-
 function listing() {
     $.ajax({
         type: "GET",
@@ -23,25 +19,27 @@ function listing() {
         success: function (response) {
             let diaries = response['diaries'];
             for (let i = 0; i < diaries.length; i++) {
-                // let card_id = diaries[i]['id'];
+                let post_id = diaries[i]['post_id'];
                 let title = diaries[i]['title'];
                 let date = diaries[i]['date'];
                 let album_art = diaries[i]['album_art'];
 
-                let temp_html = `<div class="card" onclick="click_card()">
-                                                <img class="card-img-top"
-                                                     src=${album_art}
-                                                     alt="Card image cap">
-                                                <div class="card-body">
-                                                    <p hidden id="card-id">hidden</p>
-                                                    <h5 class="card-title">${title}</h5>
-                                                    <p class="card-text"><small class="text-muted">${date}</small></p>
-                                                </div>
-                                            </div>`;
+                let temp_html = `<div class="card" onclick="location.href='/diary/${post_id}'">
+                                        <img class="card-img-top"
+                                             src=${album_art}
+                                             alt="Card image cap">
+                                        <div class="card-body" id="card-box" name="card-box">
+                                            <h5 class="card-title" id="title name="title">${title}</h5>
+                                            <p class="card-text"><small class="text-muted">${date}</small></p>
+                                        </div>
+                                 </div>`;
+
                 $('#diaries-box').append(temp_html);
 
             }
 
         }
-    })
+    });
 }
+
+
