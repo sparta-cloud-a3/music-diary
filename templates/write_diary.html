@@ -55,6 +55,17 @@
     </style>
 
     <script>
+
+        function search() {
+            let music_url = $('#url-box').val();
+            if (music_url.includes('melon')) {
+                window.open("about:blank").location.href = music_url
+            } else {
+                alert('melon을 이용해 주세요')
+            }
+        }
+
+
         function submit() {
 
             let title = $('#title-box').val();
@@ -63,7 +74,7 @@
             let url = $('#url-box').val();
             let content = $('#content-box').val();
 
-            $.ajax({
+                $.ajax({
                 type: "POST",
                 url: "/diaries",
                 data: {
@@ -74,10 +85,8 @@
                     content_give: content
                 },
                 success: function (response) {
-                    if (response["result"] == "success") {
                         alert(response["msg"]);
-                        window.location.replace("index.html");
-                    }
+                        location.href="diary"
                 }
             });
         }
@@ -128,7 +137,7 @@
         <input type="text" class="form-control" placeholder="음악정보 URL을 입력해주세요" aria-label="Recipient's username"
                aria-describedby="basic-addon2" id="url-box">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">검색</button>
+            <button class="btn btn-outline-secondary" type="button" onclick="search()">검색</button>
         </div>
     </div>
 
