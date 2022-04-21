@@ -68,9 +68,7 @@
                 url: "/diaries",
                 data: {},
                 success: function (response) {
-                    if (response["result"] == "success") {
                         let diaries = response['diaries'];
-                        console.log(diaries);
                         for (let i = 0; i < diaries.length; i++) {
                             let title = diaries[i]['title'];
                             let date = diaries[i]['date'];
@@ -78,17 +76,17 @@
 
                             let temp_html = `<div class="card" onclick="click_card()">
                                                 <img class="card-img-top"
-                                                     src=img_url
+                                                     src=${img_url}
                                                      alt="Card image cap">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">title</h5>
-                                                    <p class="card-text"><small class="text-muted">date</small></p>
+                                                    <h5 class="card-title">${title}</h5>
+                                                    <p class="card-text"><small class="text-muted">${date}</small></p>
                                                 </div>
                                             </div>`;
                             $('#diaries-box').append(temp_html);
 
                         }
-                    }
+
                 }
             })
         }
@@ -111,15 +109,6 @@
              src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
     </div>
     <div class="card-columns card-box" id="diaries-box">
-        <div class="card" onclick="click_card()">
-            <img class="card-img-top"
-                 src="https://cdnimg.melon.co.kr/cm2/album/images/106/00/854/10600854_20210430113134_500.jpg?4c03c0d724197f49e1f50b922beb9ebe/melon/resize/282/quality/80/optimize"
-                 alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
     </div>
 </div>
 </body>

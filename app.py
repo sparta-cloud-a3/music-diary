@@ -19,6 +19,9 @@ def home():
 def write():
     return render_template('write_diary.html')
 
+@app.route('/diary')
+def diary():
+    return render_template('diary.html')
 
 @app.route('/diaries', methods=['GET'])
 def listing():
@@ -42,6 +45,7 @@ def saving():
     writer = request.form['writer_give']
     content = request.form['content_give']
     url = request.form['url_give']
+    weather = request.form['weather_give']
     date = datetime.date.strftime(datetime.date.today(), "%Y년%m월%d일")
 
     headers = {
@@ -59,7 +63,8 @@ def saving():
         'album_art': album_art,
         'music_title': music_title,
         'content': content,
-        'date': date
+        'date': date,
+        'weather' : weather
     }
 
     db.post.insert_one(doc)
