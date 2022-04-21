@@ -104,7 +104,10 @@
     </div>
     <button type="button" class="btn btn-secondary, write_btn" onclick="location.href='/write'">일기 작성하러 가기</button>
     <div class="search">
-        <input type="text" class="search-input" id="search-box" placeholder="검색어 입력">
+        <form action="/search" method="GET">
+            <input type="text" class="search-input" id="search-box" name="query" placeholder="검색어 입력">
+            <button type="submit" value="search"/>
+        </form>
         <img class="search-img" onclick="search()"
              src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
     </div>

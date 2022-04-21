@@ -30,14 +30,15 @@ def listing():
     return jsonify({'diaries': diary_list})
 
 
-@app.route('/diaries/search', methods=['GET'])
+@app.route('/search', methods=['GET'])
 def searchlisting():
     query_receive = request.args.get('query')
     print(query_receive)
     lists = list(db.post.find({'title': {'$regex': query_receive}}, {'_id': False}))
     print(lists)
 
-    return jsonify({'text_receive': query_receive, 'list_receive': lists})
+    return render_template('search.html', text=query_receive, search_posts=lists)
+
 
 @app.route('/diaries', methods=['POST'])
 def saving():
