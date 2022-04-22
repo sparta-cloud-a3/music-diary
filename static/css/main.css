@@ -78,4 +78,9 @@ video {
 
 .card-box {
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    flex: 0 0 30%;
 }
