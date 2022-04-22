@@ -79,7 +79,4 @@ video {
 .card{
     flex: 0 0 30%;
 }
-.back-grad{
-    background: linear-gradient(white 5%,lightCyan 55%, skyBlue);
-}
 
