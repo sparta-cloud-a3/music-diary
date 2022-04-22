@@ -26,10 +26,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@200&family=Nanum+Myeongjo&display=swap"
           rel="stylesheet">
 
+
     <title>음악일기 | 일기 페이지</title>
     <style>
+
         * {
-            font-family: 'Jua', sans-serif
+            font-family: 'Nanum Myeongjo', serif;
         }
 
         .wrap {
@@ -69,7 +71,7 @@
 
         .content-box {
             width: 400px;
-            font-size: 20px;
+            font-size: 22px;
             text-align: center;
             margin: 10px auto;
             white-space: pre-line;
@@ -80,11 +82,12 @@
 
     </script>
 </head>
-
+<!--"{{ url_for('static', filename='image/{{diary["weather"]}}.JPG') }}"-->
 <body>
 <div class="wrap">
         <div>
             <span class="title">{{diary["title"]}}</span><span class="writer"> 작성자 : {{diary["writer"]}} </span>
+            <img src=/static/image/{{diary["weather"]}}.JPG>
             <button type="button" class="btn btn-secondary home-btn" onclick="location.href='/'">HOME</button>
         </div>
         <hr>
