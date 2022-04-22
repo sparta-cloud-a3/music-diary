@@ -46,6 +46,12 @@
 
         .writer {
             font-size: 20px;
+            color: dimgrey;
+            margin: 0 0 0 40px;
+        }
+
+        .date {
+            font-size: 16px;
             color: gray;
             margin: 0 0 0 10px;
         }
@@ -82,11 +88,11 @@
 
     </script>
 </head>
-<!--"{{ url_for('static', filename='image/{{diary["weather"]}}.JPG') }}"-->
+
 <body>
 <div class="wrap">
         <div>
-            <span class="title">{{diary["title"]}}</span><span class="writer"> 작성자 : {{diary["writer"]}} </span>
+            <span class="title">{{diary["title"]}}</span><span class="writer"> 작성자 : {{diary["writer"]}} </span> <span class="date"> {{diary["date"]}} </span>
             <img src=/static/image/{{diary["weather"]}}.JPG>
             <button type="button" class="btn btn-secondary home-btn" onclick="location.href='/'">HOME</button>
         </div>

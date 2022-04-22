@@ -87,7 +87,7 @@ def saving():
 
 def callapi():
     now = datetime.now()
-    before_minute = now - timedelta(minutes=30)
+    before_minute = now - timedelta(hours=2)
     date = before_minute.strftime('%Y-%m-%d-%H-%M')
     temp = date.split("-")
 
@@ -110,7 +110,10 @@ def callapi():
 
     lists = data['response']['body']['items']['item']
 
+
     hour = int(hour) + 1;
+    if hour >= 24 :
+        hour == '00'
     time = str(hour) + '00'
 
     t1h = 0
