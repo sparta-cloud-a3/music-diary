@@ -43,12 +43,11 @@ def search_listing():
 @app.route('/diaries', methods=['POST'])
 def saving():
 
-    print('save')
     if 0 >= db.post.estimated_document_count():
         post_id = 0
     else:
         post_id = list(db.post.find({},{'_id': False}))[-1]['post_id'] + 1
-        print(post_id)
+
 
     title = request.form['title_give']
     writer = request.form['writer_give']
@@ -92,7 +91,7 @@ def saving():
 
 def callapi():
     now = datetime.now()
-    before_minute = now - timedelta(minutes=30)
+    before_minute = now - timedelta(hours=2)
     date = before_minute.strftime('%Y-%m-%d-%H-%M')
     temp = date.split("-")
 
@@ -115,7 +114,10 @@ def callapi():
 
     lists = data['response']['body']['items']['item']
 
+
     hour = int(hour) + 1;
+    if hour >= 24 :
+        hour == '00'
     time = str(hour) + '00'
 
     t1h = 0
