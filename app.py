@@ -25,13 +25,12 @@ def diary(id):
 
 @app.route('/diaries', methods=['GET'])
 def listing():
-    diary_list = list(db.post.find({}, {'_id': False}))
+    diary_list = list(db.post.find({}, {'_id': False}).sort('_id', -1))
 
     return jsonify({'diaries': diary_list})
 
 
 @app.route('/search', methods=['GET'])
-
 def search_listing():
 
     query_receive = request.args.get('query')
@@ -46,6 +45,8 @@ def saving():
     if 0 >= db.post.estimated_document_count():
         post_id = 0
     else:
+        # post_id = db.post.find({}, sort=[('_id', -1)]).limit(1)
+        # print(post_id)
         post_id = list(db.post.find({},{'_id': False}))[-1]['post_id'] + 1
 
 
@@ -81,7 +82,6 @@ def saving():
         'date': date,
         'weather': weather,
         'degree': degree
-
     }
 
     db.post.insert_one(doc)
@@ -147,15 +147,6 @@ def callapi():
         pty = sky
 
     return {'degree': t1h,'weather': pty}
-
-
-# @app.route('/diaries/view', methods=['GET'])
-# def showReview():
-#     query_receive = request.args.get('query')
-#     list_one = list(db.list.find_one({'title':query_receive},{'_id':False}))
-#     return render_template('view.html', search_one=list_one)
-#     #return jsonify({'all_lists':lists, 'msg':'list 불러왔지롱'})
-
 
 
 if __name__ == '__main__':
