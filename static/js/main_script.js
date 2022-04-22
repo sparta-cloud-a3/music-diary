@@ -11,11 +11,6 @@ function search() {
     }
 }
 
-
-function click_card() {
-    location.href = "diary"
-}
-
 function listing() {
     $.ajax({
         type: "GET",

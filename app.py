@@ -9,29 +9,35 @@ app = Flask(__name__)
 client = MongoClient('localhost', 27017)
 db = client.music_diary
 
+
 @app.route('/')
 def home():
+
     return render_template('index.html')
+
 
 @app.route('/write')
 def write():
+
     return render_template('write_diary.html')
+
 
 @app.route('/diary/<int:id>')
 def diary(id):
     diary_give = db.post.find_one({'post_id': id}, {'_id': False})
+
     return render_template('diary.html', diary=diary_give)
 
 
 @app.route('/diaries', methods=['GET'])
 def listing():
     diary_list = list(db.post.find({}, {'_id': False}).sort('_id', -1))
+
     return jsonify({'diaries': diary_list})
 
 
 @app.route('/search', methods=['GET'])
 def search_listing():
-
     query_receive = request.args.get('query')
     lists = list(db.post.find({'title': {'$regex': query_receive}}, {'_id': False}))
 
@@ -40,7 +46,6 @@ def search_listing():
 
 @app.route('/diaries', methods=['POST'])
 def saving():
-
     if 0 >= db.post.estimated_document_count():
         post_id = 0
     else:
@@ -53,7 +58,6 @@ def saving():
     now = datetime.now()
     date = now.strftime('%Y년%m월%d일')
 
-
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
     data = requests.get(url, headers=headers)
@@ -63,7 +67,7 @@ def saving():
     album_art = soup.select_one('meta[property="og:image"]')['content']
     music_title = soup.select_one('meta[property="og:title"]')['content']
 
-    #api 호출 후 날씨 저장하는 부분
+    # api 호출 후 날씨 저장하는 부분
     dict = callapi()
     weather = dict['weather']
     degree = dict['degree']
@@ -110,9 +114,8 @@ def callapi():
 
     lists = data['response']['body']['items']['item']
 
-
     hour = int(hour) + 1;
-    if hour >= 24 :
+    if hour >= 24:
         hour == '00'
     time = str(hour) + '00'
 
@@ -142,7 +145,7 @@ def callapi():
     if pty == '':
         pty = sky
 
-    return {'degree': t1h,'weather': pty}
+    return {'degree': t1h, 'weather': pty}
 
 
 if __name__ == '__main__':

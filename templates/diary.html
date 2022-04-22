@@ -84,30 +84,25 @@
         }
 
     </style>
-    <script>
-
-    </script>
 </head>
 
 <body>
-<div class="wrap">
-        <div>
-            <span class="title">{{diary["title"]}}</span><span class="writer"> 작성자 : {{diary["writer"]}} </span> <span class="date"> {{diary["date"]}} </span>
-            <img src=/static/image/{{diary["weather"]}}.JPG>
-            <button type="button" class="btn btn-secondary home-btn" onclick="location.href='/'">HOME</button>
-        </div>
-        <hr>
-        <div class="music-box">
-            <img class=album-art src={{diary["album_art"]}}
-                 alt="Not Image">
-            <p>{{diary["music_title"]}}</p>
-        </div>
-        <div class="content-box">
-            {{diary["content"]}}
-        </div>
-</div>
-
-
+    <div class="wrap">
+            <div>
+                <span class="title">{{diary["title"]}}</span><span class="writer"> 작성자 : {{diary["writer"]}} </span> <span class="date"> {{diary["date"]}} </span>
+                <img src=/static/image/{{diary["weather"]}}.JPG>
+                <button type="button" class="btn btn-secondary home-btn" onclick="location.href='/'">HOME</button>
+            </div>
+            <hr>
+            <div class="music-box">
+                <img class=album-art src={{diary["album_art"]}}
+                     alt="Not Image">
+                <p>{{diary["music_title"]}}</p>
+            </div>
+            <div class="content-box">
+                {{diary["content"]}}
+            </div>
+    </div>
 </body>
 
 </html>
