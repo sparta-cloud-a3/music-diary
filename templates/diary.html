@@ -37,11 +37,21 @@
             margin: 80px auto;
         }
 
+        .title {
+            font-size: 32px;
+            color: black;
+        }
 
         .writer {
             font-size: 20px;
             color: gray;
             margin: 0 0 0 10px;
+        }
+
+        .home-btn {
+            width: 100px;
+            font-size: 18px;
+            float: right;
         }
 
         .music-box {
@@ -58,15 +68,13 @@
         }
 
         .content-box {
+            width: 400px;
             font-size: 20px;
             text-align: center;
+            margin: 10px auto;
+            white-space: pre-line;
         }
 
-        .mainbtn {
-            text-align: center;
-            margin: 30px auto 30px auto;
-
-        }
     </style>
     <script>
 
@@ -75,7 +83,10 @@
 
 <body>
 <div class="wrap">
-        <h1>{{diary["title"]}}<span class="writer"> 작성자 : {{diary["writer"]}} </span></h1>
+        <div>
+            <span class="title">{{diary["title"]}}</span><span class="writer"> 작성자 : {{diary["writer"]}} </span>
+            <button type="button" class="btn btn-secondary home-btn" onclick="location.href='/'">HOME</button>
+        </div>
         <hr>
         <div class="music-box">
             <img class=album-art src={{diary["album_art"]}}
@@ -85,7 +96,6 @@
         <div class="content-box">
             {{diary["content"]}}
         </div>
-        <button type="submit" class="btn btn-primary btn-lg">메인으로</button>
 </div>
 
 
