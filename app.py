@@ -25,13 +25,12 @@ def diary(id):
 
 @app.route('/diaries', methods=['GET'])
 def listing():
-    diary_list = list(db.post.find({}, {'_id': False}))
+    diary_list = list(db.post.find({}, {'_id': False}).sort('_id', -1))
 
     return jsonify({'diaries': diary_list})
 
 
 @app.route('/search', methods=['GET'])
-
 def search_listing():
 
     query_receive = request.args.get('query')
@@ -47,6 +46,8 @@ def saving():
     if 0 >= db.post.estimated_document_count():
         post_id = 0
     else:
+        # post_id = db.post.find({}, sort=[('_id', -1)]).limit(1)
+        # print(post_id)
         post_id = list(db.post.find({},{'_id': False}))[-1]['post_id'] + 1
         print(post_id)
 
