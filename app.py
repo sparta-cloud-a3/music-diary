@@ -126,20 +126,20 @@ def callapi():
             t1h = list['fcstValue']
         elif list['category'] == 'SKY' and list['fcstTime'] == time:
             if list['fcstValue'] == '1':
-                sky = '맑음'
+                sky = 'sunny'
             elif list['fcstValue'] == '3':
-                sky = '구름많음'
+                sky = 'cloudy'
             else:
-                sky = '흐림'
+                sky = 'little_cloudy(day)'
         elif list['category'] == 'PTY' and list['fcstTime'] == time:
             if list['fcstValue'] == '0':
                 pty = ''
             elif list['fcstValue'] == '1' or list['fcstValue'] == '5' or list['fcstValue'] == '6':
-                pty = '비'
+                pty = 'rainy'
             elif list['fcstValue'] == '2':
-                pty = '비/눈'
+                pty = 'snow_rainy'
             elif list['fcstValue'] == '3' or list['fcstValue'] == '7':
-                pty = '눈'
+                pty = 'snow'
 
     if pty == '':
         pty = sky
