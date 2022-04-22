@@ -20,9 +20,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
-    <!--stylesheet-->
-    <link rel="stylesheet" href="/static/css/main.css" type="text/css">
-
     <!--google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +32,12 @@
             font-family: 'Jua', sans-serif
         }
 
+        .wrap {
+            width: 900px;
+            margin: 80px auto;
+        }
+
+
         .writer {
             font-size: 20px;
             color: gray;
@@ -42,7 +45,8 @@
         }
 
         .music-box {
-            margin: 40px;
+            margin: 40px auto 0 auto;
+            text-align: center;
         }
 
         .album-art {
@@ -50,11 +54,12 @@
             height: 350px;
             object-fit: cover;
             margin-bottom: 10px;
+
         }
 
-        .input-group {
-            width: 800px;
-            margin: auto;
+        .content-box {
+            font-size: 20px;
+            text-align: center;
         }
 
         .mainbtn {
@@ -70,24 +75,17 @@
 
 <body>
 <div class="wrap">
-    <form action="/home" class="mainbtn">
-        <div>
-            <h1>{{diary["title"]}}<span class="writer"> 작성자 : {{diary["writer"]}} </span></h1>
-            <hr>
-            <div class="music-box">
-                <img class=album-art src={{diary["album_art"]}}
-                     alt="Not Image">
-                <p>{{diary["music_title"]}}</p>
-            </div>
-            <div class="content-box">
-                {{diary["content"]}}
-            </div>
-            <div class="input-group">
-            <textarea class="form-control" rows="8" placeholder="내용을 입력해주세요"
-                      aria-label="With textarea">{{diary["content"]}}</textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg">메인으로</button>
-    </form>
+        <h1>{{diary["title"]}}<span class="writer"> 작성자 : {{diary["writer"]}} </span></h1>
+        <hr>
+        <div class="music-box">
+            <img class=album-art src={{diary["album_art"]}}
+                 alt="Not Image">
+            <p>{{diary["music_title"]}}</p>
+        </div>
+        <div class="content-box">
+            {{diary["content"]}}
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">메인으로</button>
 </div>
 
 
