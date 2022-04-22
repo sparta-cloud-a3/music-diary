@@ -13,7 +13,6 @@ db = client.music_diary
 def home():
     return render_template('index.html')
 
-
 @app.route('/write')
 def write():
     return render_template('write_diary.html')
